@@ -7,11 +7,13 @@ const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const keys = require("./config/keys");
 
 require("./models/User");
+require("./models/Survey");
 
 mongoose.connect(keys.mongoURI);
 
 const app = express();
 
+app.use(express.json());
 app.use(
   cookieSession({
     maxAge: 10 * 24 * 60 * 60 * 1000,
@@ -54,6 +56,8 @@ passport.use(
     }
   )
 );
+
 require("./routes/auth")(app);
+require("./routes/surveyRoutes")(app);
 
 app.listen(5000);
