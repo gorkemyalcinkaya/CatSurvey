@@ -7,6 +7,7 @@ import Header from "./Header.js";
 import Landing from "./Landing.js";
 import Dashboard from "./Dashboard.js";
 import SurveyNew from "./survey/SurveyNew.js";
+import Footer from "./Footer";
 
 class App extends Component {
   componentDidMount() {
@@ -25,6 +26,7 @@ class App extends Component {
               <Route path="/surveys/new" element={<SurveyNew />}></Route>
             </Routes>
           </div>
+          <Footer />
         </BrowserRouter>
       </div>
     );

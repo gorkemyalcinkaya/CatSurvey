@@ -8,7 +8,7 @@ import validate from "./Validate";
 class SurveyForm extends Component {
   renderQuestions({ fields, meta: { error, submitFailed } }) {
     return (
-      <ul>
+      <ul className="container">
         {fields.map((question, index) => (
           <li key={index}>
             <div className="section">
@@ -62,7 +62,7 @@ class SurveyForm extends Component {
     return (
       <div>
         <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
-          <div className="section">
+          <div className="container section">
             <Field
               component={SurveyField}
               type="text"
@@ -72,7 +72,7 @@ class SurveyForm extends Component {
           </div>
 
           <FieldArray name="questions" component={this.renderQuestions} />
-          <div className="section">
+          <div className="section container">
             <Link
               to="/surveys"
               className="red lighten-1 waves-effect waves-light btn-small white-text"
@@ -81,7 +81,7 @@ class SurveyForm extends Component {
             </Link>
             <button
               type="submit"
-              className=" light-blue lighten-1 waves-effect waves-light btn-small white-text right"
+              className=" light-blue lighten-1 waves-effect waves-light btn-small white-text right "
             >
               Next
               <i className="material-icons right">done</i>{" "}

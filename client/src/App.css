@@ -1,0 +1,15 @@
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+questionCard {
+  border-radius: 20;
+  padding-left: 20;
+  margin-bottom: 20;
+}

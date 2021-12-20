@@ -4,11 +4,16 @@ const requireLogin = require("../middlewares/middleware");
 const Survey = mongoose.model("surveys");
 
 module.exports = (app) => {
+  app.get("/api/surveys", requireLogin, async (req, res) => {
+    const surveys = await Survey.find({ _user: req.user.id });
+    res.send(surveys);
+  });
+
   app.post("/api/surveys", requireLogin, (req, res) => {
-    const { title, questions } = req.body;
+    const { surveyTitle, questions } = req.body;
 
     const survey = new Survey({
-      title: title,
+      surveyTitle: surveyTitle,
       questions: questions.map((question) => {
         return {
           title: question.title,
