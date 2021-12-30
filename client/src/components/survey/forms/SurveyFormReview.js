@@ -1,17 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as actions from "../../actions";
+import * as actions from "../../../actions";
 import { useNavigate } from "react-router-dom";
-import Survey from "./Survey";
+import Survey from "../Survey";
 
-const SurveyFormReview = ({ onCancel, formValues, submitSurvey }) => {
+const SurveyFormReview = ({ onCancel, formValues, createSurvey }) => {
   let navigate = useNavigate();
   return (
-    <div className="container section">
+    <div className="container section" style={{ marginBottom: "5%" }}>
       <h5 className="section red-text lighten-1" style={{ fontSize: 35 }}>
         Preview
       </h5>
-      <Survey formValues={formValues} />
+      <Survey survey={formValues} />
 
       <button
         className="btn-flat btn-small red lighten-1 white-text"
@@ -21,8 +21,8 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey }) => {
         Back
       </button>
       <button
-        className="right btn-flat btn-small blue lighten-1 white-text"
-        onClick={() => submitSurvey(formValues, navigate)}
+        className="right btn-flat btn-small orange darken-1 white-text"
+        onClick={() => createSurvey(formValues, navigate)}
       >
         Create
         <i className=" material-icons right">create</i>
@@ -30,8 +30,8 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey }) => {
     </div>
   );
 };
-function mapStateToPRops(state) {
+function mapStateToProps(state) {
   return { formValues: state.form.surveyForm.values };
 }
 
-export default connect(mapStateToPRops, actions)(SurveyFormReview);
+export default connect(mapStateToProps, actions)(SurveyFormReview);

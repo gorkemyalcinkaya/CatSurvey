@@ -4,7 +4,7 @@ import React from "react";
 import { Field } from "redux-form";
 import SurveyField from "./SurveyField";
 
-const renderOptions = ({ fields, meta: { error, touched } }) => (
+const renderOptions = ({ fields, meta: { error, touched, submitFailed } }) => (
   <ul>
     {console.log(error)}
     {fields.map((option, index) => (
@@ -24,11 +24,11 @@ const renderOptions = ({ fields, meta: { error, touched } }) => (
             </div>
             <div className="input-field col s1">
               <button
-                className="right btn-small waves-effect waves-light red lighten-1"
+                className="right btn-small btn-floating waves-effect waves-light red lighten-1"
                 type="button"
                 onClick={() => fields.remove(index)}
               >
-                <i className="material-icons ">clear</i>
+                <i className="material-icons ">remove</i>
               </button>
             </div>
           </div>
@@ -36,14 +36,17 @@ const renderOptions = ({ fields, meta: { error, touched } }) => (
       </li>
     ))}
     <div className=" red-text lighten-1">{touched && error}</div>
-    <li>
+    <li key="buttons2">
       <button
-        className="btn-floating btn-small waves-effect waves-light green lighten-1"
+        className="btn-floating btn-small waves-effect waves-light orange darken-1"
         type="button"
         onClick={() => fields.push()}
       >
         <i className="material-icons">add</i>
       </button>
+      {error && (
+        <div className=" red-text lighten-1">{submitFailed && error}</div>
+      )}
       <span className="grey-text space-left2"> Add an option</span>
     </li>
   </ul>

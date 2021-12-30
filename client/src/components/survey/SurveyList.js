@@ -1,22 +1,125 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSurveys } from "../../actions";
+import { fetchSurveys, deleteSurvey } from "../../actions";
+import { Link } from "react-router-dom";
+import M from "materialize-css";
+import surveyLogo from "../../public/survey.png";
 
 class SurveyList extends Component {
   componentDidMount() {
     this.props.fetchSurveys();
   }
+  componentDidUpdate() {
+    M.AutoInit();
+  }
+  handleRefresh = () => {
+    this.props.fetchSurveys();
+  };
 
   renderSurveys() {
     return this.props.surveys.map((survey) => {
+      const fullDate = new Date(survey.dateCreated);
+      const shortDate =
+        fullDate.getDate() +
+        "/" +
+        (fullDate.getMonth() + 1) +
+        "/" +
+        fullDate.getFullYear();
       return (
-        <div className=" col s4 card darken-2" key={survey._id}>
-          <div className="card-content">
-            <span className="card-title">{survey.surveyTitle}</span>
-          </div>
-          <div class="card-action">
-            <a href="#">This is a link</a>
-            <a href="#">This is a link</a>
+        <div>
+          <div
+            className=" col s12 m4 xl3 card darken-2 small "
+            style={{ margin: 10, padding: 0 }}
+            key={survey._id}
+          >
+            <div className="card-content">
+              <span
+                className="right grey-text "
+                style={{
+                  fontSize: 13,
+                }}
+              >
+                {shortDate}
+              </span>
+              <span className="card-title">
+                <h5>{survey.surveyTitle}</h5>
+              </span>
+              <div className="center-align">
+                <img
+                  className="center-align"
+                  src={surveyLogo}
+                  width="100"
+                  alt="surveyLogo"
+                />
+              </div>
+            </div>
+            <div
+              className="card-action"
+              style={{
+                paddingBottom: 0,
+              }}
+            >
+              <div
+                className="row "
+                style={{
+                  marginBottom: 0,
+                }}
+              >
+                <div className="col s12">
+                  <div className="row">
+                    <Link to={`/results/${survey._id}`} state={survey}>
+                      <span>Results</span>
+                    </Link>
+                    <Link
+                      className="dropdown-trigger right"
+                      to=""
+                      data-target={survey._id}
+                    >
+                      <i className="material-icons">more_vert</i>
+                    </Link>
+                    <ul id={survey._id} className="dropdown-content">
+                      <li key="linkId1">
+                        <span>
+                          <Link
+                            to=""
+                            onClick={() =>
+                              navigator.clipboard.writeText(
+                                `http://localhost:3000/surveys/${survey._id}`
+                              )
+                            }
+                          >
+                            <i className="material-icons ">content_copy</i>
+                          </Link>
+                        </span>
+                      </li>
+                      <li key="linkId2">
+                        <span>
+                          <Link to={`/surveys/${survey._id}`} target="_blank">
+                            <i className="material-icons ">open_in_new</i>
+                          </Link>
+                        </span>
+                      </li>
+                      <li key="linkId3">
+                        <span>
+                          <Link
+                            to=""
+                            onClick={() => {
+                              this.props.deleteSurvey(
+                                survey._id,
+                                this.handleRefresh
+                              );
+                            }}
+                          >
+                            <i className="material-icons ">delete_forever</i>
+                          </Link>
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       );
@@ -34,4 +137,6 @@ class SurveyList extends Component {
 function mapStateToProps({ surveys }) {
   return { surveys };
 }
-export default connect(mapStateToProps, { fetchSurveys })(SurveyList);
+export default connect(mapStateToProps, { fetchSurveys, deleteSurvey })(
+  SurveyList
+);

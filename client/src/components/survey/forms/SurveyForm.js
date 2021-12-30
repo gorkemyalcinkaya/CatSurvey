@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { reduxForm, Field, FieldArray } from "redux-form";
-import renderOptions from "./OptionField";
-import SurveyField from "./SurveyField";
+import renderOptions from "../fields/OptionField";
+import SurveyField from "../fields/SurveyField";
 import { Link } from "react-router-dom";
 import validate from "./Validate";
 
@@ -40,10 +40,10 @@ class SurveyForm extends Component {
             </div>
           </li>
         ))}
-        <li>
+        <li key="buttons">
           <div className="section">
             <button
-              className="btn-small waves-effect waves-light green lighten-1"
+              className="btn-small waves-effect waves-light orange darken-1"
               type="button"
               onClick={() => fields.push({})}
             >
@@ -60,9 +60,9 @@ class SurveyForm extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ marginBottom: "4%" }}>
         <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
-          <div className="container section">
+          <div className="container section ">
             <Field
               component={SurveyField}
               type="text"
