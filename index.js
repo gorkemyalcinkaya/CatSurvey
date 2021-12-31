@@ -40,12 +40,11 @@ passport.use(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      callbackURL: key.googleRedirectURI,
+      callbackURL: keys.googleRedirectURI,
     },
     (accessToken, refreshToken, profile, done) => {
       User.findOne({ googleId: profile.id }).then((user) => {
         if (user) {
-          //kullanıcı zaten kayıtlı
           done(null, user);
         } else {
           new User({ googleId: profile.id })
