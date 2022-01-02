@@ -79,41 +79,44 @@ class SurveyList extends Component {
                       <i className="material-icons">more_vert</i>
                     </Link>
                     <ul id={survey._id} className="dropdown-content">
-                      <li key="linkId1">
-                        <span>
-                          <Link
-                            to=""
-                            onClick={() =>
-                              navigator.clipboard.writeText(
-                                `http://localhost:3000/surveys/${survey._id}`
-                              )
-                            }
-                          >
-                            <i className="material-icons ">content_copy</i>
-                          </Link>
-                        </span>
+                      <li
+                        key="linkId1"
+                        onClick={() =>
+                          navigator.clipboard.writeText(
+                            `https://catsurvey.herokuapp.com/surveys/${survey._id}`
+                          )
+                        }
+                      >
+                        <Link to={""}>
+                          <i className="material-icons ">content_copy</i>
+                        </Link>
                       </li>
-                      <li key="linkId2">
-                        <span>
-                          <Link to={`/surveys/${survey._id}`} target="_blank">
-                            <i className="material-icons ">open_in_new</i>
-                          </Link>
-                        </span>
+                      <li
+                        key="linkId2"
+                        onClick={() => {
+                          window.open(
+                            `https://catsurvey.herokuapp.com/surveys/${survey._id}`,
+                            "_blank",
+                            "noopener,noreferrer"
+                          );
+                        }}
+                      >
+                        <Link to={""}>
+                          <i className="material-icons ">open_in_new</i>
+                        </Link>
                       </li>
-                      <li key="linkId3">
-                        <span>
-                          <Link
-                            to=""
-                            onClick={() => {
-                              this.props.deleteSurvey(
-                                survey._id,
-                                this.handleRefresh
-                              );
-                            }}
-                          >
-                            <i className="material-icons ">delete_forever</i>
-                          </Link>
-                        </span>
+                      <li
+                        key="linkId3"
+                        onClick={() => {
+                          this.props.deleteSurvey(
+                            survey._id,
+                            this.handleRefresh
+                          );
+                        }}
+                      >
+                        <Link to="">
+                          <i className="material-icons ">delete_forever</i>
+                        </Link>
                       </li>
                     </ul>
                   </div>

@@ -31,8 +31,8 @@ export const createSurvey = (values, navigate) => {
 export const deleteSurvey = (id, handleRefresh) => {
   return function (dispatch) {
     axios.delete("/api/surveys", { data: { id: id } }).then((res) => {
-      handleRefresh();
       dispatch({ type: DELETE_SURVEY, payload: res.data });
+      handleRefresh();
     });
   };
 };

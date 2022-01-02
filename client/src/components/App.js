@@ -10,7 +10,7 @@ import SurveyNew from "./survey/forms/SurveyNew.js";
 import Footer from "./Footer";
 import SurveyClient from "./survey/SurveyClient";
 import Results from "./Results";
-import NavigateSetter from "./navigate/NavigateSetter";
+import NavigateSetter from "../helpers/navigate/NavigateSetter";
 import SubmitSuccess from "./survey/SubmitSuccess";
 
 class App extends Component {
@@ -21,9 +21,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <BrowserRouter>
+        <BrowserRouter forceRefresh={true}>
           <NavigateSetter />
           <Header />
+
           <main
             style={{
               display: "flex",

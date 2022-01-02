@@ -15,9 +15,11 @@ class SurveyNew extends Component {
       );
     }
     return (
-      <SurveyForm
-        onSurveySubmit={() => this.setState({ showFormReview: true })}
-      />
+      <div className="container">
+        <SurveyForm
+          onSurveySubmit={() => this.setState({ showFormReview: true })}
+        />
+      </div>
     );
   }
   render() {

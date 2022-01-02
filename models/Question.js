@@ -5,6 +5,7 @@ const optionSchema = require("./Option");
 const questionSchema = new Schema({
   title: String,
   options: [optionSchema],
+  type: String,
 });
 
 module.exports = questionSchema;

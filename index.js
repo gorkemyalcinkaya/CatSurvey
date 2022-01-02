@@ -43,11 +43,16 @@ passport.use(
       callbackURL: keys.googleRedirectURI,
     },
     (accessToken, refreshToken, profile, done) => {
+      console.log(profile);
       User.findOne({ googleId: profile.id }).then((user) => {
         if (user) {
           done(null, user);
         } else {
-          new User({ googleId: profile.id })
+          new User({
+            googleId: profile.id,
+            name: profile.displayName,
+            picture: profile.photos[0].value,
+          })
             .save()
             .then((user) => done(null, user));
         }

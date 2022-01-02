@@ -4,9 +4,14 @@ import renderOptions from "../fields/OptionField";
 import SurveyField from "../fields/SurveyField";
 import { Link } from "react-router-dom";
 import validate from "./Validate";
+import M from "materialize-css";
 
 class SurveyForm extends Component {
+  componentDidUpdate() {
+    M.AutoInit();
+  }
   renderQuestions({ fields, meta: { error, submitFailed } }) {
+    function handleChange(event) {}
     return (
       <ul className="container">
         {fields.map((question, index) => (
@@ -14,25 +19,40 @@ class SurveyForm extends Component {
             <div className="section">
               <div className=" row ">
                 <span
-                  className="col s11 text-accent-2"
+                  className="col s10 m11 text-accent-2"
                   style={{ fontSize: 30 }}
                 >
                   Question {index + 1}
                 </span>
                 <button
-                  className="col s1 btn-small waves-effect waves-light red lighten-1"
+                  className="col s2 m1 btn-small waves-effect waves-light red lighten-1"
                   type="button"
                   onClick={() => fields.remove(index)}
                 >
                   <i className="material-icons">delete</i>
                 </button>
               </div>
-              <Field
-                name={`${question}.title`}
-                type="text"
-                component={SurveyField}
-                label="What is your Question"
-              />
+              <div className="row">
+                <div class="input-field col s4 m2">
+                  <select onChange={handleChange}>
+                    <option value="single" selected>
+                      Single{" "}
+                    </option>
+                    <option value="multiple">Multiple</option>
+                  </select>
+                </div>
+
+                <div className="input-field col s8 m10">
+                  <Field
+                    name={`${question}.title`}
+                    type="text"
+                    component={SurveyField}
+                    label="What is your Question"
+                  />
+                  {M.AutoInit()}
+                </div>
+              </div>
+
               <FieldArray
                 name={`${question}.options`}
                 component={renderOptions}
@@ -45,7 +65,9 @@ class SurveyForm extends Component {
             <button
               className="btn-small waves-effect waves-light orange darken-1"
               type="button"
-              onClick={() => fields.push({})}
+              onClick={() => {
+                fields.push({});
+              }}
             >
               Add Question
             </button>
