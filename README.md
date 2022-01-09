@@ -33,12 +33,12 @@ List the ready features here:
 
 
 ## Screenshots
-![Example screenshot](./img/screenshot1.png)
-![Example screenshot](./img/screenshot2.png)
-![Example screenshot](./img/screenshot3.png)
-![Example screenshot](./img/screenshot4.png)
-![Example screenshot](./img/screenshot6.png)
-![Example screenshot](./img/screenshot7.png)
+![Example screenshot](./img/screenshot1.PNG)
+![Example screenshot](./img/screenshot2.PNG)
+![Example screenshot](./img/screenshot3.PNG)
+![Example screenshot](./img/screenshot4.PNG)
+![Example screenshot](./img/screenshot6.PNG)
+![Example screenshot](./img/screenshot7.PNG)
 <!-- If you have screenshots you'd like to share, include them here. -->
 
 
