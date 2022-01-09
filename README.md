@@ -20,7 +20,7 @@ Share survey and collect results via react.js and express
 
 
 ## Technologies Used
-- MongoDB-
+- MongoDB
 - Node.js/Express 
 - React.js 
 
