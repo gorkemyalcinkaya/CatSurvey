@@ -1,6 +1,6 @@
 # CatSurvey
 Share survey and collect results via react.js and express
-> Live demo [_here_](catsurvey.herokuapp.com).
+> Live demo [_here_](https://catsurvey.herokuapp.com).
 ## Table of Contents
 * [General Info](#general-information)
 * [Technologies Used](#technologies-used)
