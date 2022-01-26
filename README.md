@@ -14,7 +14,7 @@ Share survey and collect results via react.js and express
 
 
 ## General Information
-- It is an Survey app for doing researchs and evaluate results.
+- It is a Survey app for doing research and evaluating results.
 - Purpose of this project doing researchs efficiently and user friendly.
 - I made this project for educational purposes, feel free to use.
 
